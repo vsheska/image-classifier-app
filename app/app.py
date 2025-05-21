@@ -7,7 +7,12 @@ iface = gr.Interface(
     inputs=gr.Image(type="pil"),
     outputs="label",
     title="Image Classifier",
-    description="Upload an image and this app will predict its class using MobileNetV2."
+    description="Upload an image and this app will predict its class using MobileNetV2.",
+    examples=[
+        ["examples/dog.jpg"],
+        ["examples/bike.jpg"],
+        ["examples/pizza.jpg"]
+    ]
 )
 
 if __name__ == "__main__":
