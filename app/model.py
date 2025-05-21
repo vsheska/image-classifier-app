@@ -22,7 +22,7 @@ preprocess = transforms.Compose([
 LABELS_URL = "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
 labels = requests.get(LABELS_URL).text.strip().split("\n")
 
-def predict(image: Image.Image) -> list[tuple[str, float]]:
+def predict(image: Image.Image) -> dict[str, float]:
     """Takes a PIL image and returns the top prediction label."""
     image_tensor = preprocess(image).unsqueeze(0)  # Add batch dimension
     with torch.no_grad():
@@ -30,5 +30,5 @@ def predict(image: Image.Image) -> list[tuple[str, float]]:
         probs = torch.nn.functional.softmax(logits[0], dim=0)
         top_probs, top_indices = torch.topk(probs, 3)
 
-    results = [(labels[idx], float(prob)) for idx, prob in zip(top_indices, top_probs)]
+    results = {labels[idx]: float(prob) for idx, prob in zip(top_indices, top_probs)}
     return results
