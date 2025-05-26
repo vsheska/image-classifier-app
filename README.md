@@ -18,7 +18,7 @@ Try it locally by uploading an image or using one of the built-in examples.
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git clone https://github.com/vsheska/image-classifier-app.git
 cd YOUR_REPO_NAME
 ```
 
